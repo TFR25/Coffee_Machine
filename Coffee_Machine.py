@@ -38,14 +38,18 @@ while not make_coffee:
         total_bill.append(bill)
     elif order == "off": 
         break
+
     print("Please insert coins.")
+
     quarters = int(input("How many quarters? "))
     dimes = int(input("How many dimes? "))
     nickles = int(input("How many nickles? "))
     pennies = int(input("How many pennies? "))
     total_coins = ((quarters * 0.25) + (dimes * 0.10) + (nickles * 0.05) + (pennies * 0.01))
     total = sum(total_bill)
+
     print(total, total_coins)
+    
     if total_coins < total:
         print("Sorry, that's not enough money. Money refunded.")
     elif total_coins > total:
