@@ -1,14 +1,67 @@
-# program requirements:
-# TODO 1. Prompt user by asking “What would you like? (espresso/latte/cappuccino):”
-# a. Check the user’s input to decide what to do next.
-# b. The prompt should show every time action has completed, e.g. once the drink is
-# dispensed. The prompt should show again to serve the next customer.
-# TODO 2. Turn off the Coffee Machine by entering “off” to the prompt.
-# a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off
-# the machine. Your code should end execution when this happens.
+MENU = {
+    "espresso": {
+        "ingredients": {
+            "water": 50,
+            "coffee": 18,
+        },
+        "cost": 1.5,
+    },
+    "latte": {
+        "ingredients": {
+            "water": 200,
+            "milk": 150,
+            "coffee": 24,
+        },
+        "cost": 2.5,
+    },
+    "cappuccino": {
+        "ingredients": {
+            "water": 250,
+            "milk": 100,
+            "coffee": 24,
+        },
+        "cost": 3.0,
+    }
+}
+make_coffee = False
+total_bill = []
+while not make_coffee:
+    order = input("What would you like? (espresso, latte, or cappuccino?) ").lower()
+    if order == "espresso":
+        bill = 1.5
+        total_bill.append(bill)
+    elif order == "latte":
+        bill = 2.5
+        total_bill.append(bill)
+    elif order == "cappuccino":
+        bill = 3.0
+        total_bill.append(bill)
+    elif order == "off": 
+        break
+    print("Please insert coins.")
+    quarters = int(input("How many quarters? "))
+    dimes = int(input("How many dimes? "))
+    nickles = int(input("How many nickles? "))
+    pennies = int(input("How many pennies? "))
+    total_coins = ((quarters * 0.25) + (dimes * 0.10) + (nickles * 0.05) + (pennies * 0.01))
+    total = sum(total_bill)
+    print(total, total_coins)
+    if total_coins < total:
+        print("Sorry, that's not enough money. Money refunded.")
+    elif total_coins > total:
+        change = total_coins - total
+        print(f"Here is ${change} in change.")
+        print(f"Here is your {order} ☕. Enjoy!")
+
 # TODO 3. Print report.
 # a. When the user enters “report” to the prompt, a report should be generated that shows
 # the current resource values. e.g.
+reserve = {
+    "water": 100,
+    "milk": 50,
+    "coffee": 76,
+    "money": 2.5,
+}
 # TODO 4. Check resources sufficient?
 # a. When the user chooses a drink, the program should check if there are enough
 # resources to make that drink.
